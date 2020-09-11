@@ -16,6 +16,16 @@ public class Face {
         //call randomize method to set the Face variables
         randomize();
     }
+
+    /**External Citation
+        Date: 10 September 2020
+        Problem: Did not know how to generate random numbers in a given range
+
+        Resource:
+     https://stackoverflow.com/questions/20389890/generating-a-random-number-between-1-and-10-java
+        Solution: I followed the example code from the first answer
+     */
+
     //randomize the Face variables
     void randomize() {
         //generate 5 random numbers between 1 and 5
