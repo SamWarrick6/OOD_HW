@@ -1,7 +1,8 @@
-package com.example.ood_hw
+package com.example.ood_hw;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.SurfaceView;
 import android.widget.SeekBar;
 import android.widget.RadioButton;
 import android.content.pm.ActivityInfo;
@@ -11,7 +12,7 @@ import android.view.View;
 
 class MainActivity extends AppCompatActivity {
 
-    private SeekBar seekbar;
+    private SeekBar seekbarRed;
 
 
     @Override
@@ -20,7 +21,11 @@ class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
 
-        seekbar = findViewById(R.id.Red);
-        seekbar.setOnSeekBarChangeListener(Face);
+        SurfaceView faceView = findViewById(R.id.faceView);
+        Face face = new Face(this);
+        seekbarRed = findViewById(R.id.Red);
+        seekbarRed.setOnSeekBarChangeListener(face);
     }
+}
+
 

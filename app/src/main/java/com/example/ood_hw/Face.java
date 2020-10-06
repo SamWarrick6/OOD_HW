@@ -40,8 +40,8 @@ public class Face extends SurfaceView implements SeekBar.OnSeekBarChangeListener
     int radioButton;
 
     //constructor class to set the Face variables
-    public Face(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public Face(Context context) {
+        super(context);
         //set it to draw
         setWillNotDraw(false);
 
