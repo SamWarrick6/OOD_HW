@@ -25,7 +25,7 @@
                 android:textSize="18dp" />
 
             <SeekBar
-                android:id="@+id/seekBar2"
+                android:id="@+id/Red"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="255" />
@@ -39,7 +39,7 @@
                 android:textSize="18dp" />
 
             <SeekBar
-                android:id="@+id/seekBar3"
+                android:id="@+id/Green"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -52,7 +52,7 @@
                 android:textSize="18dp" />
 
             <SeekBar
-                android:id="@+id/seekBar4"
+                android:id="@+id/Blue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -116,6 +116,11 @@
             </RadioGroup>
 
         </LinearLayout>
+
+        <SurfaceView
+            android:id="@+id/faceView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 

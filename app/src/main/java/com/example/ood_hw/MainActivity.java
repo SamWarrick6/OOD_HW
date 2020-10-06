@@ -1,4 +1,4 @@
-/**package com.example.ood_hw
+package com.example.ood_hw
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,15 +9,18 @@ import android.util.Log;
 import android.view.View;
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity extends AppCompatActivity {
 
     private SeekBar seekbar;
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
 
         seekbar = findViewById(R.id.Red);
-        findViewById(R.id.Red).setOnSeekBarChangeListener
+        seekbar.setOnSeekBarChangeListener(Face);
     }
-}*/
+
