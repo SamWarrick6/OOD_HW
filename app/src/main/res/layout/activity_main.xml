@@ -83,32 +83,33 @@
             android:orientation="vertical">
 
             <RadioGroup
+                android:id="@+id/RadioGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/hair"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Hair"
                     android:textSize="18dp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/eyes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Eyes"
                     android:textSize="18dp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton3"
+                    android:id="@+id/skin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Skin"
                     android:textSize="18dp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton4"
+                    android:id="@+id/randomFace"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Random Face"

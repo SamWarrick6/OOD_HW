@@ -7,12 +7,15 @@ import android.graphics.Path;
 import android.graphics.Point;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 
 import java.util.Random;
 
-public class Face extends SurfaceView implements SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener{
+public class Face extends SurfaceView implements SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener, Spinner.OnItemSelectedListener{
 
     private Face face;
 
@@ -37,7 +40,7 @@ public class Face extends SurfaceView implements SeekBar.OnSeekBarChangeListener
     int rgbBlue;
 
     //radio group buttons
-    int radioButton;
+    int radioButton = 4;
 
     //constructor class to set the Face variables
     public Face(Context context) {
@@ -46,7 +49,9 @@ public class Face extends SurfaceView implements SeekBar.OnSeekBarChangeListener
         setWillNotDraw(false);
 
         //call randomize method to set the Face variables
-        randomize();
+        if (radioButton == 4) {
+            randomize();
+        }
 
         //setup the palette
         hairPaint.setColor(hairColor);
@@ -249,5 +254,23 @@ public class Face extends SurfaceView implements SeekBar.OnSeekBarChangeListener
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, int i) {
         radioButton = i;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        /**External Citation
+         Date: 05 October 2020
+         Problem: Did not know how to convert long to int
+
+         Resource:
+         https://beginnersbook.com/2019/04/java-long-to-int-conversion/
+         Solution: I followed the example code and was able to convert long to int
+         */
+        hairStyle = (int)id;
+        face.invalidate();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
     }
 }
