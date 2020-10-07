@@ -110,10 +110,10 @@ public class Face extends SurfaceView  {
     @Override
     public void onDraw(Canvas canvas) {
         //set the starting variables for the face
-        left = 700.0f;
-        top = 450.0f;
-        right = 1000.0f;
-        bottom = 1150.0f;
+        left = 500.0f;
+        top = 250.0f;
+        right = 800.0f;
+        bottom = 950.0f;
 
         //draw the face shape as an oval
         canvas.drawOval(left, top, right, bottom, skinPaint);
