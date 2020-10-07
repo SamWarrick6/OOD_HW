@@ -2,6 +2,7 @@ package com.example.ood_hw;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
@@ -40,16 +41,14 @@ public class Face extends SurfaceView  {
     int rgbBlue;
 
     //radio group buttons
-    int radioButton = 4;
-
-
+    int radioButton;
 
     //constructor class to set the Face variables
     public Face(Context context) {
         super(context);
         //set it to draw
         setWillNotDraw(false);
-
+        setBackgroundColor(Color.WHITE);
         //call randomize method to set the Face variables
         if (radioButton == 4) {
             randomize();
@@ -111,10 +110,10 @@ public class Face extends SurfaceView  {
     @Override
     public void onDraw(Canvas canvas) {
         //set the starting variables for the face
-        left = 500.0f;
-        top = 350.0f;
-        right = 800.0f;
-        bottom = 950.0f;
+        left = 700.0f;
+        top = 450.0f;
+        right = 1000.0f;
+        bottom = 1150.0f;
 
         //draw the face shape as an oval
         canvas.drawOval(left, top, right, bottom, skinPaint);

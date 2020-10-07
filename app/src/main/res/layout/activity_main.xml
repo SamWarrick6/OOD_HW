@@ -66,7 +66,8 @@
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:entries="@array/spinner_names"/>
 
             <TextView
                 android:id="@+id/textView4"
@@ -118,10 +119,11 @@
 
         </LinearLayout>
 
-        <SurfaceView
+        <com.example.ood_hw.Face
             android:id="@+id/faceView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            />
 
     </LinearLayout>
 
