@@ -44,8 +44,8 @@ public class Face extends SurfaceView  {
     int radioButton;
 
     //constructor class to set the Face variables
-    public Face(Context context) {
-        super(context);
+    public Face(Context context, AttributeSet attrs) {
+        super(context, attrs);
         //set it to draw
         setWillNotDraw(false);
         setBackgroundColor(Color.WHITE);
@@ -111,10 +111,13 @@ public class Face extends SurfaceView  {
     public void onDraw(Canvas canvas) {
         //set the starting variables for the face
         left = 500.0f;
-        top = 250.0f;
+        top = 150.0f;
         right = 800.0f;
-        bottom = 950.0f;
+        bottom = 350.0f;
 
+        skinPaint.setColor(skinColor);
+        eyePaint.setColor(eyeColor);
+        hairPaint.setColor(hairColor);
         //draw the face shape as an oval
         canvas.drawOval(left, top, right, bottom, skinPaint);
 
