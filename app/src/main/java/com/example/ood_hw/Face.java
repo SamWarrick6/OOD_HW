@@ -9,21 +9,15 @@ import android.util.AttributeSet;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 
 import java.util.Random;
 
-public class Face extends SurfaceView implements SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener, Spinner.OnItemSelectedListener{
+public class Face extends SurfaceView  {
 
-    private Face face;
-
-    //Face variables
-    int skinColor;
-    int eyeColor;
-    int hairColor;
-    int hairStyle;
 
     //face location variables
     float left, top, right, bottom;
@@ -34,6 +28,12 @@ public class Face extends SurfaceView implements SeekBar.OnSeekBarChangeListener
     Paint skinPaint = new Paint();
     Paint hairLinePaint = new Paint();
 
+    //Face variables
+    int skinColor;
+    int eyeColor;
+    int hairColor;
+    int hairStyle;
+
     //hex colors
     int rgbRed;
     int rgbGreen;
@@ -41,6 +41,8 @@ public class Face extends SurfaceView implements SeekBar.OnSeekBarChangeListener
 
     //radio group buttons
     int radioButton = 4;
+
+
 
     //constructor class to set the Face variables
     public Face(Context context) {
@@ -53,31 +55,23 @@ public class Face extends SurfaceView implements SeekBar.OnSeekBarChangeListener
             randomize();
         }
 
-        //setup the palette
-        hairPaint.setColor(hairColor);
-        hairPaint.setStyle(Paint.Style.FILL);
-        eyePaint.setColor(eyeColor);
-        eyePaint.setStyle(Paint.Style.FILL);
-        skinPaint.setColor(skinColor);
-        skinPaint.setStyle(Paint.Style.FILL);
-        hairLinePaint.setColor(hairColor);
         hairLinePaint.setStyle(Paint.Style.FILL);
         hairLinePaint.setStrokeWidth(3);
 
-
     }
 
-    /**External Citation
-        Date: 10 September 2020
-        Problem: Did not know how to generate random numbers in a given range
-
-        Resource:
-     https://stackoverflow.com/questions/20389890/generating-a-random-number-between-1-and-10-java
-        Solution: I followed the example code from the first answer
-     */
 
     //randomize the Face variables
     void randomize() {
+
+        /**External Citation
+         Date: 10 September 2020
+         Problem: Did not know how to generate random numbers in a given range
+
+         Resource:
+         https://stackoverflow.com/questions/20389890/generating-a-random-number-between-1-and-10-java
+         Solution: I followed the example code from the first answer
+         */
 
         /**External Citation
          Date: 05 October 2020
@@ -122,15 +116,13 @@ public class Face extends SurfaceView implements SeekBar.OnSeekBarChangeListener
         right = 800.0f;
         bottom = 950.0f;
 
-        //check to see what aspect of the face is changing using the radio button
-
         //draw the face shape as an oval
         canvas.drawOval(left, top, right, bottom, skinPaint);
 
         //draw the eyes
         drawEyes(canvas, left + 75.0f, top + 100.0f, right - 75.0f, bottom - 275.0f);
 
-
+        //determine which hairstyle is selected and draw that one
         switch (hairStyle) {
             case 1:
                 drawHair1(canvas, left + 50.0f, top - 50.0f, right - 50.0f, top + 50.0f);
@@ -149,6 +141,73 @@ public class Face extends SurfaceView implements SeekBar.OnSeekBarChangeListener
         }
     }
 
+    //change the color variables
+    public void changeColor(SeekBar seekbar, int a) {
+        //change the color to the correct color
+        int Color = 0;
+        switch (seekbar.getId()) {
+            case R.id.Red:
+                //set eye color
+                Color = 0xFF000000 + (a * 0x10000) + (rgbGreen * 0x100) + rgbBlue;
+                break;
+
+            case R.id.Green:
+                //set eye color
+                Color = 0xFF000000 + (rgbRed * 0x10000) + (a * 0x100) + rgbBlue;
+                break;
+
+            case R.id.Blue:
+                //set eye color
+                Color = 0xFF000000 + (rgbRed * 0x10000) + (rgbGreen * 0x100) + a;
+                break;
+
+            default:
+                break;
+        }
+
+        //determine which aspect of the face is changing
+        switch (radioButton) {
+            case 1:
+                hairColor = Color;
+                break;
+
+            case 2:
+                eyeColor = Color;
+                break;
+
+            case 3:
+                skinColor = Color;
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    //update the variable that stores which radio button is checked
+    public void updateRadio(int b) {
+        //update radiobutton
+        switch (b) {
+            case (R.id.hair):
+                radioButton = 1;
+                break;
+            case (R.id.eyes):
+                radioButton = 2;
+                break;
+            case (R.id.skin):
+                radioButton = 3;
+                break;
+            case (R.id.randomFace):
+                radioButton = 4;
+                break;
+            default:
+                radioButton = 0;
+        }
+    }
+
+    public void updateHairStyle(int c) {
+        hairStyle = c;
+    }
 
     //draw the eyes
     public void drawEyes(Canvas canvas, float left, float top, float right, float bottom) {
@@ -195,82 +254,5 @@ public class Face extends SurfaceView implements SeekBar.OnSeekBarChangeListener
         canvas.drawRect(left + 100.0f, top - 50.0f, right - 180.0f, bottom + 50, hairPaint);
         canvas.drawRect(left + 140.0f, top - 50.0f, right - 140.0f, bottom + 50, hairPaint);
         canvas.drawRect(left + 180.0f, top - 50.0f, right - 100.0f, bottom + 50, hairPaint);
-    }
-
-    //Seekbar changed method
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-        //change the color to the correct color
-        int Color = 0;
-        switch (seekBar.getId()) {
-            case R.id.Red:
-                //set eye color
-                Color = 0xFF000000 + (i * 0x10000) + (rgbGreen * 0x100) + rgbBlue;
-                break;
-
-            case R.id.Green:
-                //set eye color
-                Color = 0xFF000000 + (rgbRed * 0x10000) + (i * 0x100) + rgbBlue;
-                break;
-
-            case R.id.Blue:
-                //set eye color
-                Color = 0xFF000000 + (rgbRed * 0x10000) + (rgbGreen * 0x100) + i;
-                break;
-
-            default:
-                break;
-        }
-
-        //determine which aspect of the face is changing
-        switch (radioButton) {
-            case 1:
-                hairColor = Color;
-                break;
-
-            case 2:
-                eyeColor = Color;
-                break;
-
-            case 3:
-                skinColor = Color;
-                break;
-
-            default:
-                break;
-        }
-
-        face.invalidate();
-    }
-
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-    }
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-    }
-
-    @Override
-    public void onCheckedChanged(RadioGroup radioGroup, int i) {
-        radioButton = i;
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        /**External Citation
-         Date: 05 October 2020
-         Problem: Did not know how to convert long to int
-
-         Resource:
-         https://beginnersbook.com/2019/04/java-long-to-int-conversion/
-         Solution: I followed the example code and was able to convert long to int
-         */
-        hairStyle = (int)id;
-        face.invalidate();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
     }
 }
